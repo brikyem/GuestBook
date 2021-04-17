@@ -38,8 +38,6 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnLogin;
     private Button btnSignUp;
 
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,7 +103,6 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "Check your credentials!", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                //TODO: navigate to the main activity if the user has signed in properly
                 goMainActivity();
                 Toast.makeText(LoginActivity.this, "Woohoo! You're in!", Toast.LENGTH_SHORT).show();
             }

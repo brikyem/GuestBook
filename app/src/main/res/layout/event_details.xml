@@ -1,0 +1,76 @@
+<!--TODO: maybe some functionality to share (or at least copy and paste) event details? like option to share to sms/twitter/etc -->
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvEventDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Event Details:"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="49dp"
+        tools:layout_editor_absoluteY="112dp" />
+
+    <TextView
+        android:id="@+id/tvEventName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvEventDetails"
+        android:layout_alignStart="@+id/tvEventDetails"
+        android:layout_alignEnd="@+id/tvEventDetails"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="10dp"
+        android:inputType="text"
+        android:textSize="18sp"
+        tools:text="event name" />
+
+    <TextView
+        android:id="@+id/tvEventDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvEventName"
+        android:layout_alignStart="@+id/tvEventDetails"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="10dp"
+        android:inputType="date"
+        android:textSize="18sp"
+        tools:text="event date" />
+
+    <TextView
+        android:id="@+id/tvEventLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvEventDate"
+        android:layout_alignStart="@+id/tvEventDetails"
+        android:layout_alignEnd="@+id/tvEventDetails"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="10dp"
+        android:inputType="textPostalAddress"
+        android:textSize="18sp"
+        tools:text="event location" />
+
+    <EditText
+        android:id="@+id/etAddDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvEventLocation"
+        android:layout_alignStart="@+id/tvEventDetails"
+        android:layout_alignEnd="@+id/tvEventDetails"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="10dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="additional details or description"
+        android:inputType="textMultiLine"
+        android:lines="5" />
+</RelativeLayout>
