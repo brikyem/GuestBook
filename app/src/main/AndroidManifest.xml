@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GuestBook"
         android:usesCleartextTraffic="true">
-        <activity android:name=".EventDetails"></activity>
+        <activity android:name=".TimelineActivity"></activity>
+        <activity android:name=".EventDetails" />
         <activity android:name=".MainActivity_1" />
         <activity
             android:name=".LoginActivity"

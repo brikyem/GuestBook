@@ -54,6 +54,7 @@ public class MainActivity_1 extends AppCompatActivity {
         });
 
         btnJoin = findViewById(R.id.btnJoin);
+
         btnPast = findViewById(R.id.btnPast);
     }
 

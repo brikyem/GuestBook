@@ -72,4 +72,18 @@
         android:hint="additional details or description"
         android:inputType="textMultiLine"
         android:lines="5" />
+
+    <Button
+        android:id="@+id/btnConfirm"
+        android:layout_width="124dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etAddDetails"
+        android:layout_alignStart="@+id/etAddDetails"
+        android:layout_alignEnd="@+id/etAddDetails"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="105dp"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="129dp"
+        android:layout_marginBottom="124dp"
+        android:text="Confirm" />
 </RelativeLayout>
