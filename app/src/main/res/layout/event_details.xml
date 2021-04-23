@@ -1,4 +1,3 @@
-<!--TODO: maybe some functionality to share (or at least copy and paste) event details? like option to share to sms/twitter/etc -->
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"

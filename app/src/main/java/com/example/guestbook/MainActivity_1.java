@@ -8,35 +8,62 @@
 // Also the actionbar isn't showing the logout button on the MainActivity page :(
 // Obviously you don't have to do all of this, this is just a summary of where we are right now, lol.
 // 1v1 for SC2 later? :P
+
 package com.example.guestbook;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 
 import com.parse.ParseUser;
 
-public class MainActivity extends Activity {
+public class MainActivity_1 extends AppCompatActivity {
 
     public static final String TAG = "MainActivity";
+    private Button btnCreate;
+    private Button btnJoin;
+    private Button btnPast;
 
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         ActionBar actionBar;
         //TODO: fix error
         //TODO: Update appearance of ActionBar to have custom font
         actionBar = getSupportActionBar();
 
-        //TODO: Navigation using fragmenmts/hamburger menu -- add logout functionality to hamburger menu?
-    };
-        @Override
+        btnCreate = findViewById(R.id.btnCreate);
+        btnCreate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openEvent();
+            }
+        });
+
+        btnJoin = findViewById(R.id.btnJoin);
+        btnPast = findViewById(R.id.btnPast);
+    }
+
+    private void openEvent() {
+        Intent i = new Intent(this, EventDetails.class);
+        startActivity(i);
+        finish();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.logout, menu);
         return true;
