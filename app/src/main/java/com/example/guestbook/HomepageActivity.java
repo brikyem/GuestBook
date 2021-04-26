@@ -15,20 +15,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 
 import com.parse.ParseUser;
 
-public class MainActivity_1 extends AppCompatActivity {
+public class HomepageActivity extends AppCompatActivity {
 
     public static final String TAG = "MainActivity";
     private Button btnCreate;
@@ -39,7 +36,7 @@ public class MainActivity_1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_homepage);
         ActionBar actionBar;
         //TODO: fix error
         //TODO: Update appearance of ActionBar to have custom font
@@ -59,7 +56,7 @@ public class MainActivity_1 extends AppCompatActivity {
     }
 
     private void openEvent() {
-        Intent i = new Intent(this, EventDetails.class);
+        Intent i = new Intent(this, EventDetailsActivity.class);
         startActivity(i);
         finish();
     }

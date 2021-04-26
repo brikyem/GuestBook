@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TimelineActivity">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvPosts"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="150dp"
+        android:padding="8dp" />
+
+    <TextView
+        android:id="@+id/tv_eventName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="10dp"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        tools:text="event name" />
+
+    <TextView
+        android:id="@+id/tv_eventDate"
+        android:layout_width="191dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="10dp"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        tools:text="event date" />
+
+    <TextView
+        android:id="@+id/tv_eventLocation"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="207dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="10dp"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        tools:text="event location" />
+
+    <TextView
+        android:id="@+id/tv_eventDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="85dp"
+        android:layout_marginEnd="15dp"
+        android:textAlignment="center"
+        tools:text="details" />
+
+    <Button
+        android:id="@+id/btnSign"
+        android:layout_width="match_parent"
+        android:layout_height="33dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="105dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:text="Sign Guestbook"
+        android:textSize="10sp" />
+
+    <!--<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->
+</FrameLayout>
