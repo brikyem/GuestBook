@@ -42,7 +42,6 @@ public class TimelineActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 goToCompose();
-
             }
         });
     }
