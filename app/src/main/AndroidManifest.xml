@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <queries>
+
         <!-- Camera -->
         <intent>
             <action android:name="android.media.action.IMAGE_CAPTURE" />
@@ -21,7 +22,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GuestBook"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ComposeActivity"></activity>
+        <activity android:name=".ShowActivity"></activity>
+        <activity android:name=".ComposeActivity" />
         <activity android:name=".TimelineActivity" />
         <activity android:name=".EventDetailsActivity" />
         <activity android:name=".HomepageActivity" />
@@ -34,9 +36,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.codepath.fileprovider"
+            android:authorities="com.codepath.fileprovider1"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
