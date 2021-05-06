@@ -24,6 +24,7 @@ public class EventHomepage extends AppCompatActivity {
     private Button btnViewSlideshow;
     private Button btnAddEntry;
     private Button btnLeaveEvent;
+    private Button btnDraw;
 
     private String eventName;
     private String eventDate;
@@ -73,6 +74,16 @@ public class EventHomepage extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        btnDraw = findViewById(R.id.btnDraw);
+        btnDraw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToDraw();
+            }
+        });
+
+
+
         btnLeaveEvent = findViewById(R.id.btnBackHome);
         btnLeaveEvent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,6 +129,13 @@ public class EventHomepage extends AppCompatActivity {
             }
         });
     }
+
+    private void goToDraw() {
+        Intent intent = new Intent(this, DrawActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
 
     private void goToHome() {
         Intent intent = new Intent(this, HomepageActivity.class);

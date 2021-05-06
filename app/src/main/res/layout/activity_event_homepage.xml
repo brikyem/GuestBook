@@ -118,4 +118,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/btnCompose"
         app:layout_constraintStart_toStartOf="@+id/btnCompose" />
+
+    <Button
+        android:id="@+id/btnDraw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Handwrite"
+        app:layout_constraintBottom_toTopOf="@+id/btnCompose"
+        app:layout_constraintEnd_toEndOf="@+id/btnCompose"
+        app:layout_constraintStart_toStartOf="@+id/btnCompose"
+        app:layout_constraintTop_toBottomOf="@+id/btnViewSlideshow" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

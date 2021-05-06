@@ -48,8 +48,12 @@ public class PostsFragment extends Fragment {
         allPosts = new ArrayList<>();
         postsAdapter = new PostsAdapter(getContext(), allPosts);
 
+        LinearLayoutManager myLayoutManager = new LinearLayoutManager(getContext());
+        myLayoutManager.setReverseLayout(true);
+        myLayoutManager.setStackFromEnd(true);
+
         rvPosts.setAdapter(postsAdapter);
-        rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvPosts.setLayoutManager(myLayoutManager);
         queryPosts();
     }
 
