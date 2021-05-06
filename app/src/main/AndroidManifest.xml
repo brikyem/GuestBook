@@ -22,7 +22,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GuestBook"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ShowActivity"></activity>
+        <activity android:name=".ComposeMenu"></activity>
+        <activity android:name=".NewTimelineActivity" />
+        <activity android:name=".EventHomepage" />
+        <activity android:name=".ShowActivity" />
         <activity android:name=".ComposeActivity" />
         <activity android:name=".TimelineActivity" />
         <activity android:name=".EventDetailsActivity" />

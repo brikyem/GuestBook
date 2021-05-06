@@ -1,23 +1,31 @@
-package com.example.guestbook;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.FileProvider;
+package com.example.guestbook.fragment;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.FileProvider;
+import androidx.fragment.app.Fragment;
+
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.guestbook.ComposeActivity;
+import com.example.guestbook.EventHomepage;
+import com.example.guestbook.Post;
+import com.example.guestbook.R;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -28,9 +36,11 @@ import com.parse.SaveCallback;
 import java.io.File;
 import java.util.List;
 
-public class ComposeActivity extends AppCompatActivity {
-    //TODO: Allow for all media types
-    public static final String TAG = "ComposeActivity";
+import static android.app.Activity.RESULT_OK;
+
+public class ComposeFragment extends Fragment {
+
+    public static final String TAG = "ComposeFragment";
     public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
     private EditText etDescription;
     private Button btnCaptureImage;
@@ -40,16 +50,23 @@ public class ComposeActivity extends AppCompatActivity {
     public String photoFileName = "photo.jpg";
     private Button btnBacktoMenu;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_compose);
+    public ComposeFragment(){}
 
-        etDescription = findViewById(R.id.etDescription);
-        btnCaptureImage = findViewById(R.id.btnCaptureImage);
-        ivPostImage = findViewById(R.id.ivPostImage);
-        btnSubmit = findViewById(R.id.btnSubmit);
-        btnBacktoMenu = findViewById(R.id.btnBacktoMenu);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_compose, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        etDescription = view.findViewById(R.id.etDescription);
+        btnCaptureImage = view.findViewById(R.id.btnCaptureImage);
+        ivPostImage = view.findViewById(R.id.ivPostImage);
+        btnSubmit = view.findViewById(R.id.btnSubmit);
+        btnBacktoMenu = view.findViewById(R.id.btnBacktoMenu);
 
         btnBacktoMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,10 +88,10 @@ public class ComposeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //TODO: Determine what is required in a user's post--i.e. should description be required before posting?
-                
+
                 String description = etDescription.getText().toString();
                 if (description.isEmpty()) {
-                    Toast.makeText(ComposeActivity.this, "Please add a signature!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Please add a signature!", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 ParseUser currentUser = ParseUser.getCurrentUser();
@@ -84,9 +101,8 @@ public class ComposeActivity extends AppCompatActivity {
     }
 
     private void backToMenu() {
-        Intent intent = new Intent(this, EventHomepage.class);
+        Intent intent = new Intent(getContext(), EventHomepage.class);
         startActivity(intent);
-        finish();
     }
 
     private void launchCamera() {
@@ -98,19 +114,19 @@ public class ComposeActivity extends AppCompatActivity {
         // wrap File object into a content provider
         // required for API >= 24
         // See https://guides.codepath.com/android/Sharing-Content-with-Intents#sharing-files-with-api-24-or-higher
-        Uri fileProvider = FileProvider.getUriForFile(ComposeActivity.this, "com.codepath.fileprovider1", photoFile);
+        Uri fileProvider = FileProvider.getUriForFile(getContext(), "com.codepath.fileprovider1", photoFile);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider);
 
         // If you call startActivityForResult() using an intent that no app can handle, your app will crash.
         // So as long as the result is not null, it's safe to use the intent.
-        if (intent.resolveActivity(getPackageManager()) != null) {
+        if (intent.resolveActivity(getContext().getPackageManager()) != null) {
             // Start the image capture intent to take photo
             startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
         }
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
@@ -120,7 +136,7 @@ public class ComposeActivity extends AppCompatActivity {
                 // Load the taken image into a preview
                 ivPostImage.setImageBitmap(takenImage);
             } else { // Result was a failure
-                Toast.makeText(this, "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -129,7 +145,7 @@ public class ComposeActivity extends AppCompatActivity {
         // Get safe storage directory for photos
         // Use `getExternalFilesDir` on Context to access package-specific directories.
         // This way, we don't need to request external read/write runtime permissions.
-        File mediaStorageDir = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), TAG);
+        File mediaStorageDir = new File(getContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES), TAG);
 
         // Create the storage directory if it does not exist
         if (!mediaStorageDir.exists() && !mediaStorageDir.mkdirs()){
@@ -150,7 +166,7 @@ public class ComposeActivity extends AppCompatActivity {
             public void done(ParseException e) {
                 if (e != null) {
                     Log.e(TAG, "Error while saving", e);
-                    Toast.makeText(ComposeActivity.this, "Error while saving post!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Error while saving post!", Toast.LENGTH_SHORT).show();
                 }
                 Log.i(TAG, "Post save was successful!");
                 etDescription.setText("");
@@ -159,20 +175,5 @@ public class ComposeActivity extends AppCompatActivity {
         });
     }
 
-    private void queryPosts() {
-        ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
-        query.include(Post.KEY_USER);
-        query.findInBackground(new FindCallback<Post>() {
-            @Override
-            public void done(List<Post> posts, ParseException e) {
-                if (e != null) {
-                    Log.e(TAG, "Issue with getting posts", e);
-                    return;
-                }
-                for (Post post : posts) {
-                    Log.i(TAG, "Post " + post.getDescription() + ", username: " + post.getUser().getUsername());
-                }
-            }
-        });
-    }
+
 }

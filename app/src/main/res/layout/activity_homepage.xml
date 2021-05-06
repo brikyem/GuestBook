@@ -10,10 +10,10 @@
         android:id="@+id/btnCreate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="104dp"
+        android:layout_marginTop="196dp"
         android:text="Create Event"
         app:layout_constraintEnd_toEndOf="@+id/btnJoin"
-        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintStart_toStartOf="@+id/btnJoin"
         app:layout_constraintTop_toBottomOf="@+id/ivMenuImage" />
 
@@ -23,21 +23,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="84dp"
         android:text="Join Event"
-        app:layout_constraintEnd_toEndOf="@+id/btnPast"
-        app:layout_constraintHorizontal_bias="0.416"
-        app:layout_constraintStart_toStartOf="@+id/btnPast"
-        app:layout_constraintTop_toBottomOf="@+id/btnCreate" />
-
-    <Button
-        android:id="@+id/btnPast"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="172dp"
-        android:text="Past Events"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/ivMenuImage"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="@+id/ivMenuImage" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCreate"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/ivMenuImage"
@@ -48,13 +39,4 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <Button
-        android:id="@+id/btnSlideshow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Go!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/btnPast"
-        app:layout_constraintStart_toStartOf="@+id/btnPast"
-        app:layout_constraintTop_toBottomOf="@+id/btnPast" />
 </androidx.constraintlayout.widget.ConstraintLayout>

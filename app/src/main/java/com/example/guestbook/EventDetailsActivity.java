@@ -43,11 +43,12 @@ public class EventDetailsActivity extends AppCompatActivity {
     }
 
     private void goToTimeline(String eventName, String eventDate, String eventLocation, String eventDetails) {
-        Intent i = new Intent(this, TimelineActivity.class);
+        Intent i = new Intent(this, EventHomepage.class);
         i.putExtra("eventname", eventName);
         i.putExtra("eventdate", eventDate);
         i.putExtra("eventlocation", eventLocation);
         i.putExtra("eventdetails", eventDetails);
+        setResult(1, i);
         startActivity(i);
         finish();
     }

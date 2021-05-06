@@ -5,13 +5,6 @@
     android:layout_height="match_parent"
     tools:context=".TimelineActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvPosts"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="150dp"
-        android:padding="8dp" />
-
     <TextView
         android:id="@+id/tv_eventName"
         android:layout_width="match_parent"

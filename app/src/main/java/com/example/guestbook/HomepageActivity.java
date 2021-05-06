@@ -30,8 +30,6 @@ public class HomepageActivity extends AppCompatActivity {
     public static final String TAG = "MainActivity";
     private Button btnCreate;
     private Button btnJoin;
-    private Button btnPast;
-    private Button btnSlideshow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,23 +51,8 @@ public class HomepageActivity extends AppCompatActivity {
 
         btnJoin = findViewById(R.id.btnJoin);
 
-        btnPast = findViewById(R.id.btnPast);
-
-        btnSlideshow = findViewById(R.id.btnSlideshow);
-
-        btnSlideshow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startSlideShow();
-            }
-        });
     }
 
-    private void startSlideShow() {
-        Intent intent = new Intent(this, ShowActivity.class);
-        startActivity(intent);
-        finish();
-    }
 
     private void openEvent() {
         Intent i = new Intent(this, EventDetailsActivity.class);

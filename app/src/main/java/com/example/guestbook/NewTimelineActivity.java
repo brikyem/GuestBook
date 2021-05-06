@@ -2,52 +2,44 @@ package com.example.guestbook;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.example.guestbook.fragment.PostsFragment;
-import com.example.guestbook.fragment.ShowFragment;
 import com.parse.FindCallback;
-import com.parse.GetDataCallback;
 import com.parse.ParseException;
-import com.parse.ParseFile;
 import com.parse.ParseQuery;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
-public class ShowActivity extends AppCompatActivity {
+import static java.security.AccessController.getContext;
 
-    public static final String TAG = "ShowActivity";
-    private Button btnExitShow;
-    private ImageView imageShow;
-    private TextView tvWords;
-    public ArrayList<Bitmap> bmpArray = new ArrayList<Bitmap>();
+public class NewTimelineActivity extends AppCompatActivity {
+
+    public static final String TAG = "NewTimelineActivity";
+    private RecyclerView rvPosts;
     private PostsAdapter postsAdapter;
+    private List<Post> allPosts;
+    private Button btnBackToMenu;
 
     private String eventName;
     private String eventDate;
     private String eventLocation;
     private String eventDetails;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show);
+        setContentView(R.layout.activity_new_timeline);
 
         Bundle a = new Bundle();
         a = getIntent().getExtras();
@@ -57,24 +49,20 @@ public class ShowActivity extends AppCompatActivity {
         eventLocation = a.getString("eventlocation");
         eventDetails = a.getString("eventdetails");
 
-
         Fragment fragment;
 
-        fragment = new ShowFragment();
+        fragment = new PostsFragment();
 
-        getSupportFragmentManager().beginTransaction().add(R.id.flContainerShow, fragment).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.flContainer, fragment).commit();
 
-
-        btnExitShow = findViewById(R.id.btnExitShow);
-
-        btnExitShow.setOnClickListener(new View.OnClickListener() {
+        btnBackToMenu = findViewById(R.id.btnBackToMenu1);
+        btnBackToMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 backToMenu(eventName, eventDate, eventLocation, eventDetails);
             }
         });
     }
-
 
     private void backToMenu(String eventName, String eventDate, String eventLocation, String eventDetails) {
         Intent i = new Intent(this, EventHomepage.class);
@@ -86,7 +74,6 @@ public class ShowActivity extends AppCompatActivity {
         startActivity(i);
         finish();
     }
-
 
     private void queryPosts() {
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
