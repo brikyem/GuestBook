@@ -13,13 +13,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.example.guestbook.Post;
 import com.example.guestbook.PostsAdapter;
 import com.example.guestbook.R;
 import com.example.guestbook.ShowActivity;
 import com.parse.FindCallback;
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseQuery;
 
 import java.util.ArrayList;
@@ -58,7 +61,7 @@ public class ShowFragment extends Fragment {
 
         rvPosts.setAdapter(postsAdapter);
         rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
-        rvPosts.smoothScrollToPosition(postsAdapter.getItemCount());
+        //rvPosts.smoothScrollToPosition(postsAdapter.getItemCount());
         queryPosts();
     }
 

@@ -20,6 +20,12 @@
         android:layout_height="wrap_content"
         android:text="Snap a Selfie" />
 
+    <Button
+        android:id="@+id/btnGallery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Upload" />
+
     <ImageView
         android:id="@+id/ivPostImage"
         android:layout_width="match_parent"

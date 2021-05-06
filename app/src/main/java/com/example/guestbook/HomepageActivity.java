@@ -50,7 +50,19 @@ public class HomepageActivity extends AppCompatActivity {
         });
 
         btnJoin = findViewById(R.id.btnJoin);
+        btnJoin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                joinEvent();
+            }
+        });
 
+    }
+
+    private void joinEvent() {
+        Intent intent = new Intent(this, EventValidate.class);
+        startActivity(intent);
+        finish();
     }
 
 

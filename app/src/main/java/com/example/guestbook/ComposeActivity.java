@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -26,6 +27,8 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.List;
 
 public class ComposeActivity extends AppCompatActivity {
@@ -39,6 +42,12 @@ public class ComposeActivity extends AppCompatActivity {
     private File photoFile;
     public String photoFileName = "photo.jpg";
     private Button btnBacktoMenu;
+    private Button btnGallery;
+
+    private String eventName;
+    private String eventDate;
+    private String eventLocation;
+    private String eventDetails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +59,14 @@ public class ComposeActivity extends AppCompatActivity {
         ivPostImage = findViewById(R.id.ivPostImage);
         btnSubmit = findViewById(R.id.btnSubmit);
         btnBacktoMenu = findViewById(R.id.btnBacktoMenu);
+
+        Bundle a = new Bundle();
+        a = getIntent().getExtras();
+
+        eventName = a.getString("eventname");
+        eventDate = a.getString("eventdate");
+        eventLocation = a.getString("eventlocation");
+        eventDetails = a.getString("eventdetails");
 
         btnBacktoMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,6 +83,13 @@ public class ComposeActivity extends AppCompatActivity {
         });
 
         //queryPosts();
+        btnGallery = findViewById(R.id.btnGallery);
+        btnGallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchGallery();
+            }
+        });
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,9 +107,27 @@ public class ComposeActivity extends AppCompatActivity {
         });
     }
 
+    private void launchGallery() {
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+
+        photoFile = getPhotoFileUri(photoFileName);
+        Uri fileProvider = FileProvider.getUriForFile(ComposeActivity.this, "com.codepath.fileprovider1", photoFile);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider);
+
+        startActivityForResult(intent, 1);
+
+
+    }
+
     private void backToMenu() {
-        Intent intent = new Intent(this, EventHomepage.class);
-        startActivity(intent);
+        Intent i = new Intent(this, EventHomepage.class);
+        i.putExtra("eventname", eventName);
+        i.putExtra("eventdate", eventDate);
+        i.putExtra("eventlocation", eventLocation);
+        i.putExtra("eventdetails", eventDetails);
+        setResult(1, i);
+        startActivity(i);
         finish();
     }
 
@@ -119,8 +161,23 @@ public class ComposeActivity extends AppCompatActivity {
                 // RESIZE BITMAP, see section below
                 // Load the taken image into a preview
                 ivPostImage.setImageBitmap(takenImage);
-            } else { // Result was a failure
+            }
+
+            else { // Result was a failure
                 Toast.makeText(this, "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
+            }
+        }
+        else if (requestCode == 1){
+            try{
+
+                final Uri imageUri = data.getData();
+                final InputStream imageStream = getContentResolver().openInputStream(imageUri);
+                final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+                ivPostImage.setImageBitmap(selectedImage);
+
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
             }
         }
     }
@@ -155,6 +212,7 @@ public class ComposeActivity extends AppCompatActivity {
                 Log.i(TAG, "Post save was successful!");
                 etDescription.setText("");
                 ivPostImage.setImageResource(0);
+                Toast.makeText(ComposeActivity.this, "Post Successful!", Toast.LENGTH_SHORT).show();
             }
         });
     }
