@@ -60,14 +60,15 @@ public class ComposeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_compose_dontuse);
+        setContentView(R.layout.fragment_compose);
 
         etDescription = findViewById(R.id.etDescription);
         btnCaptureImage = findViewById(R.id.btnCaptureImage);
         ivPostImage = findViewById(R.id.ivPostImage);
         btnSubmit = findViewById(R.id.btnSubmit);
         btnBacktoMenu = findViewById(R.id.btnBacktoMenu);
-        //btnHandwrite = findViewById(R.id.btnHandwrite);
+
+        btnHandwrite = findViewById(R.id.btnHandwrite);
 
         Bundle a = new Bundle();
         a = getIntent().getExtras();
@@ -100,12 +101,12 @@ public class ComposeActivity extends AppCompatActivity {
             }
         });
 
-        /*btnHandwrite.setOnClickListener(new View.OnClickListener() {
+        btnHandwrite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goToDraw();
             }
-        });*/
+        });
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,16 +126,22 @@ public class ComposeActivity extends AppCompatActivity {
                 else{
                     savePostFromGallery(description, currentUser, galleryPhoto);
                 }
+                backToMenu();
 
             }
         });
     }
 
-    /*private void goToDraw() {
+    private void goToDraw() {
         Intent intent = new Intent(this, DrawActivity.class);
+        intent.putExtra("eventname", eventName);
+        intent.putExtra("eventdate", eventDate);
+        intent.putExtra("eventlocation", eventLocation);
+        intent.putExtra("eventdetails", eventDetails);
+        setResult(1, intent);
         startActivity(intent);
         finish();
-    }*/
+    }
 
     private void backToMenu() {
         Intent i = new Intent(this, EventHomepage.class);
