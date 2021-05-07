@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class ComposeMenu extends AppCompatActivity {
+public class ComposeMenu_dont_use extends AppCompatActivity {
 
     private Button btnCapture;
     private Button btnUpload;
@@ -20,7 +20,7 @@ public class ComposeMenu extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_compose_menu);
+        setContentView(R.layout.activity_compose_menu_dontuse);
 
         Bundle a = new Bundle();
         a = getIntent().getExtras();

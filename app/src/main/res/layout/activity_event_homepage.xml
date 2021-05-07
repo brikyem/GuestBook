@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EventHomepage"
-    android:background="@color/steelblue">
+    android:background="@color/steelblue"
+    tools:context=".EventHomepage">
 
     <TextView
         android:id="@+id/tvEventName"
@@ -14,9 +14,10 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="24dp"
-        android:fontFamily="@font/comfortaa"
+        android:fontFamily="@font/lobstertwo_regular"
         android:text="event name"
         android:textAlignment="center"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -31,6 +32,7 @@
         android:fontFamily="@font/comfortaa"
         android:text="date"
         android:textAlignment="center"
+        android:textSize="14sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,6 +48,7 @@
         android:fontFamily="@font/comfortaa"
         android:text="location"
         android:textAlignment="center"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/tvDate"
@@ -55,12 +58,13 @@
         android:id="@+id/tvDesc"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:fontFamily="@font/comfortaa"
         android:text="description"
         android:textAlignment="center"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="@+id/tvLocation"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/tvDate"
         app:layout_constraintTop_toBottomOf="@+id/tvLocation" />
 
@@ -68,30 +72,29 @@
         android:id="@+id/btnViewTimeline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:layout_marginTop="12dp"
         android:backgroundTint="@color/paleyellow"
         android:fontFamily="@font/comfortaa"
         android:text="View TimeLine"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/btnViewSlideshow"
-        app:layout_constraintEnd_toEndOf="@+id/btnViewSlideshow"
-        app:layout_constraintStart_toStartOf="@+id/btnViewSlideshow" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivLogo" />
 
     <Button
         android:id="@+id/btnViewSlideshow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginTop="24dp"
         android:backgroundTint="@color/paleyellow"
         android:fontFamily="@font/comfortaa"
         android:text="View SlideShow"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/btnCompose"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnViewTimeline" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
@@ -104,8 +107,9 @@
         android:id="@+id/ivLogo"
         android:layout_width="396dp"
         android:layout_height="216dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnViewTimeline"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvDesc"
         app:srcCompat="@drawable/guestbook_icon_rs"
@@ -115,29 +119,31 @@
         android:id="@+id/btnCompose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:layout_marginTop="28dp"
         android:backgroundTint="@color/paleyellow"
         android:fontFamily="@font/comfortaa"
         android:text="sign guestbook"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/btnBackHome"
-        app:layout_constraintEnd_toEndOf="@+id/btnViewSlideshow"
-        app:layout_constraintStart_toStartOf="@+id/btnViewSlideshow" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnViewSlideshow" />
 
     <Button
         android:id="@+id/btnBackHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_marginTop="24dp"
         android:backgroundTint="@color/paleyellow"
         android:fontFamily="@font/comfortaa"
-        android:text="Leave Event"
+        android:text="Home"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/btnCompose"
-        app:layout_constraintStart_toStartOf="@+id/btnCompose" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCompose" />
 
-    <Button
+    <!--<Button
         android:id="@+id/btnDraw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -148,6 +154,6 @@
         app:layout_constraintBottom_toTopOf="@+id/btnCompose"
         app:layout_constraintEnd_toEndOf="@+id/btnCompose"
         app:layout_constraintStart_toStartOf="@+id/btnCompose"
-        app:layout_constraintTop_toBottomOf="@+id/btnViewSlideshow" />
+        app:layout_constraintTop_toBottomOf="@+id/btnViewSlideshow" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

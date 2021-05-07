@@ -48,6 +48,7 @@ public class ComposeActivity extends AppCompatActivity {
     public String photoFileName = "photo.jpg";
     private Button btnBacktoMenu;
     private Button btnGallery;
+    private Button btnHandwrite;
 
     private Bitmap galleryPhoto;
 
@@ -66,6 +67,7 @@ public class ComposeActivity extends AppCompatActivity {
         ivPostImage = findViewById(R.id.ivPostImage);
         btnSubmit = findViewById(R.id.btnSubmit);
         btnBacktoMenu = findViewById(R.id.btnBacktoMenu);
+        //btnHandwrite = findViewById(R.id.btnHandwrite);
 
         Bundle a = new Bundle();
         a = getIntent().getExtras();
@@ -98,6 +100,13 @@ public class ComposeActivity extends AppCompatActivity {
             }
         });
 
+        /*btnHandwrite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToDraw();
+            }
+        });*/
+
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,7 +130,11 @@ public class ComposeActivity extends AppCompatActivity {
         });
     }
 
-
+    /*private void goToDraw() {
+        Intent intent = new Intent(this, DrawActivity.class);
+        startActivity(intent);
+        finish();
+    }*/
 
     private void backToMenu() {
         Intent i = new Intent(this, EventHomepage.class);

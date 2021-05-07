@@ -4,19 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EventValidate"
-    android:background="@color/steelblue">
+    android:background="@color/steelblue"
+    tools:context=".EventValidate">
 
     <TextView
         android:id="@+id/tvAskName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="156dp"
+        android:layout_marginTop="148dp"
         android:fontFamily="@font/comfortaa"
         android:hint="enter event name"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,13 +23,12 @@
         android:id="@+id/etGetName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
         android:fontFamily="@font/comfortaa"
         android:inputType="textPersonName"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvAskName" />
 
@@ -38,25 +36,27 @@
         android:id="@+id/btnBackHome2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="120dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@color/paleyellow"
         android:fontFamily="@font/comfortaa"
         android:text="Back"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        android:backgroundTint="@color/paleyellow"
-        android:textColor="@color/black"/>
+        app:layout_constraintTop_toBottomOf="@+id/btnSearch" />
 
     <Button
         android:id="@+id/btnSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:fontFamily="@font/comfortaa"
-        android:text="Go"
-        app:layout_constraintEnd_toEndOf="@+id/etGetName"
-        app:layout_constraintStart_toStartOf="@+id/etGetName"
-        app:layout_constraintTop_toBottomOf="@+id/etGetName"
+        android:layout_marginTop="24dp"
         android:backgroundTint="@color/paleyellow"
-        android:textColor="@color/black"/>
+        android:fontFamily="@font/comfortaa"
+        android:text="join"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etGetName" />
 </androidx.constraintlayout.widget.ConstraintLayout>

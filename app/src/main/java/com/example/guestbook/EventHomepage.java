@@ -75,15 +75,13 @@ public class EventHomepage extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        btnDraw = findViewById(R.id.btnDraw);
+/*        btnDraw = findViewById(R.id.btnDraw);
         btnDraw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goToDraw();
             }
-        });
-
-
+        });*/
 
         btnLeaveEvent = findViewById(R.id.btnBackHome);
         btnLeaveEvent.setOnClickListener(new View.OnClickListener() {
@@ -93,9 +91,6 @@ public class EventHomepage extends AppCompatActivity {
             }
         });
 
-
-
-
 //        eventDate = a.getString("eventdate");
 //        eventLocation = a.getString("eventlocation");
 //        eventDetails = a.getString("eventdetails");
@@ -104,7 +99,6 @@ public class EventHomepage extends AppCompatActivity {
 //        tvEventDate.setText(eventDate);
 //        tvEventLocation.setText(eventLocation);
 //        tvEventDesc.setText(eventDetails);
-
 
         btnViewTimeline = findViewById(R.id.btnViewTimeline);
         btnViewTimeline.setOnClickListener(new View.OnClickListener() {
@@ -131,12 +125,11 @@ public class EventHomepage extends AppCompatActivity {
         });
     }
 
-    private void goToDraw() {
-        Intent intent = new Intent(this, DrawActivity.class);
-        startActivity(intent);
-        finish();
-    }
-
+//    private void goToDraw() {
+//        Intent intent = new Intent(this, DrawActivity.class);
+//        startActivity(intent);
+//        finish();
+//    }
 
     private void goToHome() {
         Intent intent = new Intent(this, HomepageActivity.class);

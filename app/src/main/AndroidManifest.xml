@@ -28,12 +28,12 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".DrawActivity"></activity>
         <activity android:name=".EventValidate" />
-        <activity android:name=".ComposeMenu" />
+        <activity android:name=".ComposeMenu_dont_use" />
         <activity android:name=".NewTimelineActivity" />
         <activity android:name=".EventHomepage" />
         <activity android:name=".ShowActivity" />
         <activity android:name=".ComposeActivity" />
-        <activity android:name=".TimelineActivity" />
+        <activity android:name=".TimelineActivity_dont_use" />
         <activity android:name=".EventDetailsActivity" />
         <activity android:name=".HomepageActivity" />
         <activity

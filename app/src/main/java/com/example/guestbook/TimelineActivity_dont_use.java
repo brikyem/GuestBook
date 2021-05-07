@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class TimelineActivity extends AppCompatActivity {
+public class TimelineActivity_dont_use extends AppCompatActivity {
 
     private TextView tv_eventName;
     private TextView tv_eventDate;
