@@ -4,10 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.ShowFragment">
+    tools:context=".fragment.ShowFragment"
+    android:background="@color/steelblue">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvSlide"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="@color/steelblue"/>
 </FrameLayout>
