@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
+        android:fontFamily="@font/comfortaa"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         tools:text="grogu" />
 
@@ -27,6 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        android:fontFamily="@font/comfortaa"
         android:textSize="18sp"
         tools:text="trying new food" />
 
