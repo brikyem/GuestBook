@@ -4,10 +4,14 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.ImageDecoder;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -25,8 +29,10 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
@@ -42,6 +48,8 @@ public class ComposeActivity extends AppCompatActivity {
     public String photoFileName = "photo.jpg";
     private Button btnBacktoMenu;
     private Button btnGallery;
+
+    private Bitmap galleryPhoto;
 
     private String eventName;
     private String eventDate;
@@ -101,23 +109,19 @@ public class ComposeActivity extends AppCompatActivity {
                     return;
                 }
                 ParseUser currentUser = ParseUser.getCurrentUser();
-                savePost(description, currentUser, photoFile);
+
+                if (photoFile != null){
+                    savePost(description, currentUser, photoFile);
+                }
+                else{
+                    savePostFromGallery(description, currentUser, galleryPhoto);
+                }
+
             }
         });
     }
 
-    private void launchGallery() {
-        Intent intent = new Intent(Intent.ACTION_PICK);
-        intent.setType("image/*");
 
-        photoFile = getPhotoFileUri(photoFileName);
-        Uri fileProvider = FileProvider.getUriForFile(ComposeActivity.this, "com.codepath.fileprovider1", photoFile);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider);
-
-        startActivityForResult(intent, 1);
-
-
-    }
 
     private void backToMenu() {
         Intent i = new Intent(this, EventHomepage.class);
@@ -128,6 +132,30 @@ public class ComposeActivity extends AppCompatActivity {
         setResult(1, i);
         startActivity(i);
         finish();
+    }
+
+    private void launchGallery() {
+        Intent intent = new Intent(Intent.ACTION_PICK,
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, 1);
+    }
+
+    public Bitmap loadFromUri(Uri photoUri) {
+        Bitmap image = null;
+        try {
+            // check version of Android on device
+            if(Build.VERSION.SDK_INT > 27){
+                // on newer versions of Android, use the new decodeBitmap method
+                ImageDecoder.Source source = ImageDecoder.createSource(this.getContentResolver(), photoUri);
+                image = ImageDecoder.decodeBitmap(source);
+            } else {
+                // support older versions of Android by using getBitmap
+                image = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoUri);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return image;
     }
 
     private void launchCamera() {
@@ -166,19 +194,28 @@ public class ComposeActivity extends AppCompatActivity {
                 Toast.makeText(this, "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
             }
         }
-        else if (requestCode == 1){
-            try{
-
-                final Uri imageUri = data.getData();
-                final InputStream imageStream = getContentResolver().openInputStream(imageUri);
-                final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+        else if (requestCode == 1 && data != null){
+            if (resultCode == RESULT_OK) {
+                Uri photoUri = data.getData();
+                Bitmap selectedImage = loadFromUri(photoUri);
+                galleryPhoto = selectedImage;
                 ivPostImage.setImageBitmap(selectedImage);
-
-
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
             }
         }
+    }
+
+    private String getRealPathFromURI(Uri contentURI) {
+        String result;
+        Cursor cursor = getContentResolver().query(contentURI, null, null, null, null);
+        if (cursor == null) { // Source is Dropbox or other similar local file path
+            result = contentURI.getPath();
+        } else {
+            cursor.moveToFirst();
+            int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+            result = cursor.getString(idx);
+            cursor.close();
+        }
+        return result;
     }
 
     private File getPhotoFileUri(String photoFileName) {
@@ -196,6 +233,33 @@ public class ComposeActivity extends AppCompatActivity {
         return new File(mediaStorageDir.getPath() + File.separator + photoFileName);
     }
 
+    private void savePostFromGallery(String description, ParseUser currentUser, Bitmap image) {
+        Post post = new Post();
+        post.setDescription(description);
+        post.setUser(currentUser);
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        image.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        byte[] image1 = stream.toByteArray();
+        ParseFile file = new ParseFile("ok.png", image1);
+        file.saveInBackground();
+        post.setImage(file);
+        post.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if (e != null) {
+                    Log.e(TAG, "Error while saving", e);
+                    Toast.makeText(ComposeActivity.this, "Error while saving post!", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Log.i(TAG, "Post save was successful!");
+                    etDescription.setText("");
+                    ivPostImage.setImageResource(0);
+                    Toast.makeText(ComposeActivity.this, "Post Successful FROM GALLERY!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
     private void savePost(String description, ParseUser currentUser, File photoFile) {
         Post post = new Post();
         post.setDescription(description);
@@ -208,10 +272,12 @@ public class ComposeActivity extends AppCompatActivity {
                     Log.e(TAG, "Error while saving", e);
                     Toast.makeText(ComposeActivity.this, "Error while saving post!", Toast.LENGTH_SHORT).show();
                 }
-                Log.i(TAG, "Post save was successful!");
-                etDescription.setText("");
-                ivPostImage.setImageResource(0);
-                Toast.makeText(ComposeActivity.this, "Post Successful!", Toast.LENGTH_SHORT).show();
+                else {
+                    Log.i(TAG, "Post save was successful!");
+                    etDescription.setText("");
+                    ivPostImage.setImageResource(0);
+                    Toast.makeText(ComposeActivity.this, "Post Successful!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

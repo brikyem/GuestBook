@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -47,6 +48,10 @@ public class EventDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String eventName = etEventName.getText().toString();
+                if (eventName.isEmpty()){
+                    Toast.makeText(EventDetailsActivity.this, "Event name cannot be blank!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 String eventDate = etEventDate.getText().toString();
                 String eventLocation = etEventLocation.getText().toString();
                 String eventDetails = etAddDetails.getText().toString();

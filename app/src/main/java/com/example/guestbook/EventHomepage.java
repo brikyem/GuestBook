@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -55,21 +56,21 @@ public class EventHomepage extends AppCompatActivity {
             Scanner readFile = new Scanner(currentFile);
             int count = 0;
             while(count < 4){
-                String eventInfo = readFile.nextLine();
-                if (count == 0){
-                    tvEventName.setText(eventInfo);
+                    String eventInfo = readFile.nextLine();
+                    if (count == 0){
+                        tvEventName.setText(eventInfo);
+                    }
+                    else if (count == 1){
+                        tvEventDate.setText(eventInfo);
+                    }
+                    else if (count == 2){
+                        tvEventLocation.setText(eventInfo);
+                    }
+                    else{
+                        tvEventDesc.setText(eventInfo);
+                    }
+                    count++;
                 }
-                else if (count == 1){
-                    tvEventDate.setText(eventInfo);
-                }
-                else if (count == 2){
-                    tvEventLocation.setText(eventInfo);
-                }
-                else{
-                    tvEventDesc.setText(eventInfo);
-                }
-                count++;
-            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
