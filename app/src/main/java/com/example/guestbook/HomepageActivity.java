@@ -65,7 +65,6 @@ public class HomepageActivity extends AppCompatActivity {
         finish();
     }
 
-
     private void openEvent() {
         Intent i = new Intent(this, EventDetailsActivity.class);
         startActivity(i);

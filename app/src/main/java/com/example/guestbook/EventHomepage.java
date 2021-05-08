@@ -6,10 +6,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Instrumentation;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.parse.ParseUser;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -187,6 +191,26 @@ public class EventHomepage extends AppCompatActivity {
         i.putExtra("eventlocation", eventLocation);
         i.putExtra("eventdetails", eventDetails);
         setResult(1, i);
+        startActivity(i);
+        finish();
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.logout, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.Logout) {
+            ParseUser.logOut();;
+            ParseUser currentUser = ParseUser.getCurrentUser();
+            goLoginActivity();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    private void goLoginActivity() {
+        Intent i = new Intent(this, LoginActivity.class);
         startActivity(i);
         finish();
     }
