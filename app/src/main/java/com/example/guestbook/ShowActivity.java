@@ -1,7 +1,9 @@
 package com.example.guestbook;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -10,7 +12,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
@@ -20,6 +24,8 @@ import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,10 +33,10 @@ public class ShowActivity extends AppCompatActivity {
 
     public static final String TAG = "ShowActivity";
     private Button btnExitShow;
-    private ImageView imageShow;
     private TextView tvWords;
     public ArrayList<Bitmap> bmpArray = new ArrayList<Bitmap>();
     private PostsAdapter postsAdapter;
+    private TextView tvEventSlide;
 
     private String eventName;
     private String eventDate;
@@ -50,12 +56,18 @@ public class ShowActivity extends AppCompatActivity {
         eventLocation = a.getString("eventlocation");
         eventDetails = a.getString("eventdetails");
 
+        tvEventSlide = findViewById(R.id.tvEventSlide);
+        tvEventSlide.setText(eventName);
 
-        Fragment fragment;
+        ImageView imageShow = findViewById(R.id.imageShow);
+        AnimationDrawable animationDrawable = (AnimationDrawable) imageShow.getDrawable();
+        animationDrawable.start();
 
-        fragment = new ShowFragment();
-
-        getSupportFragmentManager().beginTransaction().add(R.id.flContainerShow, fragment).commit();
+//        Fragment fragment;
+//
+//        fragment = new ShowFragment();
+//
+//        getSupportFragmentManager().beginTransaction().add(R.id.flContainerShow, fragment).commit();
 
 
         btnExitShow = findViewById(R.id.btnExitShow);
@@ -67,6 +79,18 @@ public class ShowActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void onConfigurationChanged(@NotNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        // Checks the orientation of the screen
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            Toast.makeText(this, "landscape", Toast.LENGTH_SHORT).show();
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+            Toast.makeText(this, "portrait", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
 
 
     private void backToMenu(String eventName, String eventDate, String eventLocation, String eventDetails) {

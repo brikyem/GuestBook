@@ -2,15 +2,42 @@
 <animation-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:duration="4000"
-        android:drawable="@drawable/img_1"/>
+        android:drawable="@drawable/v1"/>
+
     <item
         android:duration="4000"
-        android:drawable="@drawable/img_2"/>
+        android:drawable="@drawable/v2"/>
+
     <item
         android:duration="4000"
-        android:drawable="@drawable/img_3"/>
+        android:drawable="@drawable/v3"/>
+
     <item
         android:duration="4000"
-        android:drawable="@drawable/img_4"/>
+        android:drawable="@drawable/v4"/>
+
+    <item
+        android:duration="4000"
+        android:drawable="@drawable/v5"/>
+
+    <item
+        android:duration="4000"
+        android:drawable="@drawable/v6"/>
+
+    <item
+        android:duration="4000"
+        android:drawable="@drawable/v7"/>
+
+    <item
+        android:duration="4000"
+        android:drawable="@drawable/v8"/>
+
+    <item
+        android:duration="4000"
+        android:drawable="@drawable/v9"/>
+
+    <item
+        android:duration="4000"
+        android:drawable="@drawable/v10"/>
 
 </animation-list>
