@@ -4,31 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ShowActivity"
+    android:background="@color/steelblue"
     android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
-    android:background="@color/steelblue">
+    tools:context=".ShowActivity">
 
     <Button
         android:id="@+id/btnExitShow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
+        android:layout_marginTop="24dp"
         android:backgroundTint="@color/paleyellow"
         android:fontFamily="@font/comfortaa"
         android:text="Menu"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageShow" />
 
     <ImageView
         android:id="@+id/imageShow"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="413dp"
+        android:layout_height="451dp"
+        android:layout_marginTop="32dp"
         android:src="@drawable/slideshow"
-        app:layout_constraintBottom_toTopOf="@+id/btnExitShow"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvEventSlide"
         tools:srcCompat="@tools:sample/avatars" />
@@ -37,7 +37,7 @@
         android:id="@+id/tvEventSlide"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="48dp"
         android:fontFamily="@font/lobstertwo_regular"
         android:textAlignment="center"
         android:textSize="24sp"
