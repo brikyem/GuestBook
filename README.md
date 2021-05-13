@@ -187,3 +187,11 @@ List of network requests by screen
 
    
 <img src="BnEGuestBookM4.gif" width=600>
+
+## FINAL PRODUCT
+- [X] Polish UI/UX
+- [X] Canvas
+- [X] Slideshow
+
+   
+<img src="BnEGuestBookM5.gif" width=600>
